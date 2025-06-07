@@ -95,6 +95,17 @@ const Album = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const preloadImg = (index) => {
+      if (albumPages[index]) {
+        const img = new Image();
+        img.src = albumPages[index].content.src;
+      }
+    };
+    preloadImg(currPage + 1);
+    preloadImg(currPage - 1);
+  }, [currPage]);
+
   const handleKeyDown = (e) => {
     if (e.key === "ArrowRight") turnPage("next");
     if (e.key === "ArrowLeft") turnPage("prev");
