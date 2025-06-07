@@ -69,8 +69,8 @@ const Album = () => {
 
   const turnPage = (direction) => {
     /**
-   * @param {"next" | "prev"} direction
-   */
+     * @param {"next" | "prev"} direction
+     */
     if (isFlipping) return;
     setIsFlipping(true);
 
@@ -94,37 +94,41 @@ const Album = () => {
     }
   }, []);
 
-
-  // Page flipping with keyboard arrows
   const handleKeyDown = (e) => {
-    if (e.key === "ArrowRight") turnPage("next")
-    if (e.key === "ArrowLeft") turnPage("prev")
-  }
+    if (e.key === "ArrowRight") turnPage("next");
+    if (e.key === "ArrowLeft") turnPage("prev");
+  };
 
   return (
-    <div ref={containerRef} onKeyDown={handleKeyDown} tabIndex={0} className="bg-gradient-to-br from-rose-100 via-pink-100 to-amber-100 w-screen h-screen flex items-center justify-center">
-      <div className="relative w-[800px] h-[600px] bg-white border-8 border-rose-300 shadow-2xl rounded-xl flex items-center justify-center">
+    <div
+      ref={containerRef}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      className="bg-gradient-to-br from-rose-100 via-pink-100 to-amber-100 w-screen h-screen flex items-center justify-center overflow-auto px-2"
+    >
+      <div className="relative w-full max-w-[800px] h-auto sm:h-[600px] bg-white border-4 sm:border-8 border-rose-300 shadow-2xl rounded-xl flex flex-col items-center justify-start sm:justify-center py-6 sm:py-0">
         {/* Title */}
-        <div className="absolute top-1 left-0 right-0 text-center z-10">
-          <h1 className="text-4xl font-bold text-rose-900 mb-2 tracking-wide">💕 Roka Function Album 💕</h1>
-          <p className="text-rose-700 text-lg font-medium">
+        <div className="text-center z-10 px-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-rose-900 mb-2 tracking-wide">💕 Roka Function Album 💕</h1>
+          <p className="text-rose-700 text-sm sm:text-base md:text-lg font-medium">
             {currPage === 0
               ? "Welcome to our special moments"
               : currPage === totalPages - 1
-                ? "Thank you for viewing our memories"
-                : ``}
+              ? "Thank you for viewing our memories"
+              : ``}
           </p>
         </div>
-        <div className="w-[700px] h-[500px] bg-white border-4 border-rose-200 rounded-lg overflow-hidden flex items-center justify-center">
+
+        <div className="w-full max-w-[700px] h-auto sm:h-[500px] mt-4 bg-white border-2 sm:border-4 border-rose-200 rounded-lg overflow-hidden flex items-center justify-center">
           <div
-            className={`relative w-[630px] h-[420px] flex items-center justify-center transition-all duration-700 transform ${
+            className={`relative w-full max-w-[630px] h-auto sm:h-[420px] flex items-center justify-center transition-all duration-700 transform ${
               isFlipping ? "rotate-y-180" : "rotate-y-0"
             }`}
           >
             <img
               src={albumPages[currPage].content.src}
               alt={albumPages[currPage].content.alt}
-              className="max-w-[620px] max-h-[420px] object-contain rounded-lg shadow-xl ring-2 ring-rose-300 hover:ring-4 hover:ring-rose-500 transition-all duration-500"
+              className="w-full h-auto max-h-[420px] object-contain rounded-lg shadow-xl ring-2 ring-rose-300 hover:ring-4 hover:ring-rose-500 transition-all duration-500"
             />
             {isFlipping && (
               <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-pink-200 animate-page-turn rounded-lg"></div>
@@ -133,7 +137,7 @@ const Album = () => {
         </div>
 
         {/* Page indicator dots */}
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+        <div className="mt-4 flex justify-center space-x-2">
           {albumPages.map((_, index) => (
             <div
               key={index}
@@ -146,33 +150,35 @@ const Album = () => {
 
         {/* Navigation buttons */}
         <button
-          className={`absolute left-4 top-1/2 transform -translate-y-1/2 bg-rose-500 text-white p-3 rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 ${
+          className={`absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-rose-500 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 ${
             currPage === 0 ? "opacity-50 cursor-not-allowed" : ""
           }`}
           onClick={() => turnPage("prev")}
           disabled={currPage === 0 || isFlipping}
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
         </button>
 
         <button
-          className={`absolute right-4 top-1/2 transform -translate-y-1/2 bg-rose-500 text-white p-3 rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 ${
+          className={`absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-rose-500 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 ${
             currPage === totalPages - 1 ? "opacity-50 cursor-not-allowed" : ""
           }`}
           onClick={() => turnPage("next")}
           disabled={currPage === totalPages - 1 || isFlipping}
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={20} className="sm:w-6 sm:h-6" />
         </button>
-        <div className="absolute bottom-8 left-0 right-0 text-center z-10">
-          <p className="text-rose-700 text-lg font-medium">
-            {`Page ${currPage+1} of ${totalPages}`}
+
+        <div className="mt-4 text-center z-10">
+          <p className="text-rose-700 text-sm sm:text-lg font-medium">
+            {`Page ${currPage + 1} of ${totalPages}`}
           </p>
         </div>
       </div>
+
       {/* Bottom decorative text */}
-      <div className="absolute bottom-6 left-0 right-0 text-center">
-        <p className="text-rose-600 text-sm font-medium">
+      <div className="absolute bottom-4 left-0 right-0 text-center px-2">
+        <p className="text-rose-600 text-xs sm:text-sm font-medium">
           Use the arrow buttons or keyboard arrow keys to navigate through our precious memories
         </p>
       </div>
