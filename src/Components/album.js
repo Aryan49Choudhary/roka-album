@@ -122,7 +122,7 @@ const Album = () => {
 
         <div className="w-full max-w-[700px] h-auto sm:h-[500px] mt-4 bg-white border-2 sm:border-4 border-rose-200 rounded-lg overflow-hidden flex items-center justify-center">
           <div
-            className={`relative w-full max-w-[630px] h-auto sm:h-[420px] flex items-center justify-center transition-all duration-700 transform ${
+            className={`relative w-full max-w-[630px] h-auto sm:h-[420px] flex items-center justify-center transition-all duration-300 transform ${
               isFlipping ? "rotate-y-180" : "rotate-y-0"
             }`}
           >
