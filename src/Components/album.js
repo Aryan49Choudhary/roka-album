@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
 import img1 from "./photo-01.JPG";
 import img2 from "./photo-02.JPG";
 import img3 from "./photo-03.JPG";
