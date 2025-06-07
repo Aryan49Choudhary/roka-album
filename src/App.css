@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .App {
   text-align: center;
 }
@@ -32,7 +37,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+
+@keyframes pageTurn {
+  0% {
+    transform: perspective(1200px) rotateY(0) scale(1);
+    z-index: 10;
+    opacity: 1;
+  }
+  50% {
+    transform: perspective(1200px) rotateY(-90deg) scale(0.8);
+    z-index: 10;
+    opacity: 0.7;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(-180deg) scale(1);
+    z-index: 10;
+    opacity: 0;
+  }
+}
+
+.animate-page-turn {
+  animation: pageTurn 0.5s ease-in-out forwards;
+  transform-origin: left center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
