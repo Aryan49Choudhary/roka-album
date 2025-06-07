@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import img1 from "./photo-01.JPG";
 import img2 from "./photo-02.JPG";
 import img3 from "./photo-03.JPG";
@@ -125,7 +126,7 @@ const Album = () => {
               isFlipping ? "rotate-y-180" : "rotate-y-0"
             }`}
           >
-            <img
+            <Image
               src={albumPages[currPage].content.src}
               alt={albumPages[currPage].content.alt}
               className="w-full h-auto max-h-[420px] object-contain rounded-lg shadow-xl ring-2 ring-rose-300 hover:ring-4 hover:ring-rose-500 transition-all duration-500"
