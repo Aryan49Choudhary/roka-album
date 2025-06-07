@@ -126,9 +126,11 @@ const Album = () => {
               isFlipping ? "rotate-y-180" : "rotate-y-0"
             }`}
           >
-            <Image
+            <img
               src={albumPages[currPage].content.src}
               alt={albumPages[currPage].content.alt}
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto max-h-[420px] object-contain rounded-lg shadow-xl ring-2 ring-rose-300 hover:ring-4 hover:ring-rose-500 transition-all duration-500"
             />
             {isFlipping && (
