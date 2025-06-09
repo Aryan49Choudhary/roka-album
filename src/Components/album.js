@@ -40,6 +40,7 @@ import img36 from "./photo-36.jpg";
 // import backcover from "./back cover.png";
 import frontcover2 from "./new front2.jpg";
 import backcover2 from "./5.png";
+import savethedate from "./save the date.jpg";
 
 const Album = () => {
   const [currPage, setCurrPage] = useState(0);
@@ -52,7 +53,8 @@ const Album = () => {
       img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
       img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
       img31, img32, img33, img34, img36,
-      backcover2
+      backcover2,
+      savethedate
     ];
 
     return photos.map((src, index) => ({
